@@ -1,0 +1,55 @@
+{
+  "name": "rtalks-backend",
+  "version": "1.0.0",
+  "description": "R-Talks Event Platform Backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "init-db": "node initDb.js",
+    "init-db-only": "node initDb.js",
+    "build": "npm run init-db",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "postgresql",
+    "api",
+    "backend",
+    "rtalks"
+  ],
+  "author": "Arnold E.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "razorpay": "^2.9.3",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "cookie-parser": "^1.4.6",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/rtalks-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/rtalks-backend/issues"
+  },
+  "homepage": "https://github.com/yourusername/rtalks-backend#readme"
+}

@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: rtalks-backend
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    disk:
+      name: uploads
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: APP_NAME
+        value: "R-Talks Backend API"
+      - key: FRONTEND_URL
+        value: "https://your-frontend-domain.com"
+      - key: ALLOWED_ORIGINS
+        value: "https://your-frontend-domain.com,https://www.your-frontend-domain.com"
+      # Database connection will be provided by Render PostgreSQL service
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rtalks-postgres
+          property: connectionString
+      # Razorpay credentials (set these manually in Render dashboard)
+      - key: RAZORPAY_KEY_ID
+        value: "rzp_live_your_key_id_here"
+      - key: RAZORPAY_KEY_SECRET
+        value: "your_razorpay_secret_key_here"
+
+  - type: pserv
+    name: rtalks-postgres
+    env: postgresql
+    plan: starter
+    region: oregon
+    databases:
+      - name: rtalks_db
+        user: rtalks_user
+
+# Build configuration
+buildCommand: |
+  npm install &&
+  npm run init-db
+
+# Optional: Custom domains configuration
+# domains:
+#   - name: api.yourdomain.com
+#     type: apex
+#   - name: api.yourdomain.com
+#     type: www
